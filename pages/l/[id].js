@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 import Marker from 'react-map-gl'
 import { makeStyles, Grid, Paper, CircularProgress, Typography, Card, CardContent } from "@material-ui/core";
 
-const ALL_POSTS = "https://jsonplaceholder.typicode.com/post/";
+const ALL_POSTS = "https://jsonplaceholder.typicode.com/posts/";
 
 const Map = dynamic(() => import('../../components/Map'), {
     loading: () => <CircularProgress />,
@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
     },
-    paper: {
+    mapPaper: {
+        position: 'relative',
         padding: theme.spacing(2),
         color: theme.palette.text.secondary,
     },
@@ -78,15 +79,12 @@ const Details = withRouter( props => {
                         </Grid>
                     </Grid>
                 </Paper>
-                <Paper className={classes.paper}>
-                    <Map lat={query.itemLat} lng={query.itemLng}>
-                        {/* <Marker className="mapboxgl-marker"
-                                coordinates={[Number(query.itemLat), Number(query.itemLng)]}
-                                offsetLeft={-20}
-                                offsetTop={-10}
-                        >
-                        </Marker> */}
-                    </Map>
+                <Paper className={classes.mapPaper}>
+                    <Grid container>
+                        <Map lat={query.itemLat} lng={query.itemLng}>
+                        
+                        </Map>
+                    </Grid>
                 </Paper>
             </div>
         </Layout>
