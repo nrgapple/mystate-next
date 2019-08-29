@@ -1,4 +1,14 @@
 import Link from 'next/link'
+import { List, ListItem, ListItemText, Divider } from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles'
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        width: '100%',
+        maxWidth: 360,
+        backgroundColor: theme.palette.background.paper,
+    },
+}))
 
 const ListView = props => {
     return (
@@ -10,27 +20,30 @@ const ListView = props => {
 
 function ListLinks(props) {
     return (
-        <ul>
+        <List>
             {props.data.map(item => {
                 return (
-                    <Link 
-                        as={`/l/${item.name.replace(' ', '-')}`} 
-                        href={{
-                            pathname: "/l/[id]", 
-                            query: {
-                                itemId: item.id, 
-                                itemName: item.name, 
-                                itemLat: item.address.geo.lat,
-                                itemLng: item.address.geo.lng
-                            }
-                        }}
-                    >
-                        <li key={item.id}>
-                            <h3>{item.name}</h3>
-                        </li>
-                    </Link>
+                    <div>
+                        <Link 
+                            as={`/l/${item.name.replace(' ', '-')}`} 
+                            href={{
+                                pathname: "/l/[id]", 
+                                query: {
+                                    itemId: item.id, 
+                                    itemName: item.name, 
+                                    itemLat: item.address.geo.lat,
+                                    itemLng: item.address.geo.lng
+                                }
+                            }}
+                        >
+                            <ListItem button alignItems="flex-start">
+                                <ListItemText primary={item.name} />
+                            </ListItem>
+                        </Link>
+                        <Divider component="li" />
+                    </div>
             );})}
-        </ul>
+        </List>
     );
 }
 
