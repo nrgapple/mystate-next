@@ -81,9 +81,7 @@ const Details = withRouter( props => {
                 </Paper>
                 <Paper className={classes.mapPaper}>
                     <Grid container>
-                        <Map lat={query.itemLat} lng={query.itemLng}>
-                        
-                        </Map>
+                        <Map lat={query.itemLat} lng={query.itemLng} />
                     </Grid>
                 </Paper>
             </div>

@@ -29,7 +29,6 @@ const Map = props => {
                     height={size.height}
                     {...viewport}
                 >
-                    
                 </ReactMapGL>
             </>
         )}</SizeMe>
