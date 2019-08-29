@@ -42,19 +42,12 @@ class Map extends Component {
         return (
             //three dots spreads out the properties: https://stackoverflow.com/a/31049016/3106919
             <ReactMapGL
-                mapStyle="mapbox://styles/mapbox/light-v10"
-                mapboxApiAccessToken="pk.eyJ1IjoibnJnYXBwbGUiLCJhIjoiY2p6dm9va2I0MHQ0bzNibWw0ajkzcGRscyJ9.xDlCnMwplZSIG7_sxyHm9g"
+                mapStyle="mapbox://styles/nrgapple/cjzwqbemb11mc1clb5exs0iji"
+                mapboxApiAccessToken="pk.eyJ1IjoibnJnYXBwbGUiLCJhIjoiY2p6d3F6dWw3MGQyMjNtcDA5Zzh6b2dlYSJ9.-fps64V_9TmPtNiide36hQ"
                 onViewportChange={viewport => this._onViewportChange(viewport)}
                 {...this.state.viewport}
             >
-                {/* <Marker 
-                        latitude={Number(this.props.lat)}
-                        longitude={Number(this.props.lng)}
-                        offsetLeft={-20} 
-                        offsetTop={-10}
-                >
-                    <div>{this..itemName}</div>
-                </Marker> */}
+                {this.props.children}
             </ReactMapGL>
         );
     }

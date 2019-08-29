@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-function ListView(props) {
+const ListView = props => {
     return (
         <section className="ListView" id="ListView">
-            <ListLinks data={props.data} asPath={props.asPath} pathName={props.pathName}/>
+            <ListLinks data={props.data} />
         </section>
     );
 }
@@ -14,9 +14,9 @@ function ListLinks(props) {
             {props.data.map(item => {
                 return (
                     <Link 
-                        as={`/${props.asPath}/${item.id}`} 
+                        as={`/l/${item.name.replace(' ', '-')}`} 
                         href={{
-                            pathname: props.pathName, 
+                            pathname: "/l/[id]", 
                             query: {
                                 itemId: item.id, 
                                 itemName: item.name, 

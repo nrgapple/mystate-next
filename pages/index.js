@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 function index(props) {
     return (
         <Layout title={"Locations"}>
-            <ListView data={props.locations} asPath={"locations"} pathName={"/Details"} />
+            <ListView data={props.locations} />
         </Layout>
     );
 }
@@ -16,7 +16,6 @@ index.getInitialProps = async function() {
     const dataLocations = await resLocations.json();
 
     console.log(`Show data fetched. Count: ${dataLocations.length}`);
-    console.log(dataLocations);
     return {
         locations : dataLocations
     };
