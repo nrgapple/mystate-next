@@ -1,27 +1,28 @@
-import Head from 'next/head'
-import NavBar from './NavBar'
-import Header from './Header';
-import "./Layout.scss";
-import "./index.scss";
-import "./ListView.scss"
-import "./Details.scss"
+import Head from 'next/head';
+import AppBar from './AppBar';
+import { CssBaseline, Container } from '@material-ui/core';
 
 const Layout = props => {
     const appTitle = `mySTATE`
     return (
-        <div className="Layout">
-            <Head>
-                <title>{props.title} | {appTitle}</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <meta charSet="utf-8" />
-            </Head>
-            <Header appTitle={appTitle}/>
-            <div className="Content">
-                {props.children}
-            </div>
-            <NavBar />
+        <React.Fragment>
+            <CssBaseline />
+            <Container>
+                {/* <Head>
+                    <title>{props.title} | {appTitle}</title>
+                    <meta 
+                        name="viewport" 
+                        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
+                    <meta charSet="utf-8" />
+                </Head> */}
+                <AppBar />
+                <main>
+                    {props.children}
+                </main>
+
+            </Container>
             <Scripts />
-        </div>
+        </React.Fragment>
     );
 };
 
