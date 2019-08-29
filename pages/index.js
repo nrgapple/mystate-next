@@ -10,7 +10,7 @@ function index(props) {
     );
 }
 
-index.getInitialProps = async function(){
+index.getInitialProps = async function() {
     console.log("Starting getInitialProps in Locations");
     const resLocations = await fetch('https://jsonplaceholder.typicode.com/users');
     const dataLocations = await resLocations.json();

@@ -2,32 +2,19 @@ import Link from 'next/link'
 
 function ListView(props) {
     return (
-        <div className="grid-container">
-            <div className="grid-x grid-padding-x">
-                <table>
-                    <ListHead />
-                    <ListLinks data={props.data} asPath={props.asPath} pathName={props.pathName}/>
-                </table>
-            </div>
-        </div>
+        <section className="ListView" id="ListView">
+            <ListLinks data={props.data} asPath={props.asPath} pathName={props.pathName}/>
+        </section>
     );
 }
 
-const ListHead = () => (
-    <thead>
-        <tr>
-            <th>NAME</th>
-        </tr>
-    </thead>
-);
-
 function ListLinks(props) {
     return (
-        <tbody>
+        <ul>
             {props.data.map(item => {
                 return (
                     <Link 
-                        as={`/${props.asPath}/${item.id}-${item.name}`} 
+                        as={`/${props.asPath}/${item.id}`} 
                         href={{
                             pathname: props.pathName, 
                             query: {
@@ -38,14 +25,12 @@ function ListLinks(props) {
                             }
                         }}
                     >
-                        <tr key={item.id}>
-                            <td className="name-cell">
-                                <div className="name">{item.name}</div>
-                            </td>
-                        </tr>
+                        <li key={item.id}>
+                            <h3>{item.name}</h3>
+                        </li>
                     </Link>
             );})}
-        </tbody>
+        </ul>
     );
 }
 

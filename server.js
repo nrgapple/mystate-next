@@ -13,25 +13,30 @@ app
   .then(() => {
     const server = express();
 
-    // server.get('/author/:id', (req, res) => {
+    // server.get('/location/:id', (req, res) => {
     //     var apiUrl = 'https://jsonplaceholder.typicode.com/users/' + req.params.id;
 
     //     request(apiUrl, function (error, response, body) {
-    //         var authorDataName = "";
+    //         var locationName = "";
 
     //         if (error) {
     //             return next(error);
     //         } else if (!error && response.statusCode == 200) {
     //             const data = JSON.parse(body);
     //             if( data.name ){
-    //                 authorDataName = data.name;
+    //               locationName = data.name;
     //             }
     //         } else {
-    //             authorDataName = "Author Page";
+    //           locationName = "Location Page";
     //         }
 
-    //         const actualPage = '/AuthorPosts';
-    //         const queryParams = { authorId: req.params.id, authorName: authorDataName };
+    //         const actualPage = '/Details';
+    //         const queryParams = {
+    //           itemId: item.id, 
+    //           itemName: item.name, 
+    //           itemLat: item.address.geo.lat,
+    //           itemLng: item.address.geo.lng
+    //         }
     //         app.render(req, res, actualPage, queryParams);
     //     });
     // });

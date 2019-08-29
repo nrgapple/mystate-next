@@ -12,13 +12,19 @@
   "author": "AG",
   "license": "UNLICENSED",
   "dependencies": {
+    "@smooth-ui/core-sc": "^11.0.1",
     "@zeit/next-css": "^1.0.1",
+    "@zeit/next-sass": "^1.0.1",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^8.1.0",
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-map-gl": "^5.0.10",
-    "request": "^2.88.0"
+    "react-sizeme": "^2.6.7",
+    "reakit": "^1.0.0-beta.6",
+    "request": "^2.88.0",
+    "styled-components": "^4.3.2"
   }
 }

@@ -1,28 +1,32 @@
-import React from 'react'
-import NextHead from 'next/head'
+import Head from 'next/head'
+import NavBar from './NavBar'
+import Header from './Header';
+import "./Layout.scss";
+import "./index.scss";
+import "./ListView.scss"
+import "./Details.scss"
 
-function Layout(props) {
+const Layout = props => {
+    const appTitle = `mySTATE`
     return (
-        <div>
-            <Header title={props.title} />
-            <div className="contentContainer">
-                {/*TODO: NavBar*/}
-                <div>
-                    {props.children}
-                </div>
+        <div className="Layout">
+            <Head>
+                <title>{props.title} | {appTitle}</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta charSet="utf-8" />
+            </Head>
+            <Header appTitle={appTitle}/>
+            <div className="Content">
+                {props.children}
             </div>
+            <NavBar />
+            <Scripts />
         </div>
     );
-}
+};
 
-const Header = ({ title }) => (
-    <NextHead>
-        <meta charset="utf-8"/>
-        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link href="https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css" rel="stylesheet" />
-        <title>{title} | mySTATE</title>
-    </NextHead>
+const Scripts = () => (
+    <link href="https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css" rel="stylesheet" />
 );
 
 export default Layout;
