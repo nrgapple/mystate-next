@@ -5,6 +5,8 @@ import BackButton from "../../components/BackButton";
 import dynamic from 'next/dynamic'
 import Marker from 'react-map-gl'
 import { makeStyles, Grid, Paper, CircularProgress, Typography, Card, CardContent } from "@material-ui/core";
+import getConfig from 'next/config';
+const {serverRuntimeConfig, publicRuntimeConfig} = getConfig();
 
 const Map = dynamic(() => import('../../components/Map'), {
     loading: () => <CircularProgress />,
@@ -58,13 +60,11 @@ const useStyles = makeStyles(theme => ({
     appBarSpacer: theme.mixins.toolbar,
 }));
 
-const Details = withRouter( props => {
-    const query = props.router.query;
+const Details = props => {
     const classes = useStyles();
 
-    console.log(query);
     return (
-        <Layout title={query.itemName}>
+        <Layout title={props.place.name}>
             <div className={classes.root}>
                 <div className={classes.appBarSpacer} />
                 <Paper className={classes.mainLocationHeader}>
@@ -72,7 +72,7 @@ const Details = withRouter( props => {
                         <Grid item md={6}>
                             <div className={classes.mainLocationHeaderContent}>
                                 <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                                    {query.itemName}
+                                    {props.place.name}
                                 </Typography>
                             </div>
                         </Grid>
@@ -80,12 +80,37 @@ const Details = withRouter( props => {
                 </Paper>
                 <Paper className={classes.mapPaper} height={"100%"}>
                     <Grid container>
-                        <Map lat={query.itemLat} lng={query.itemLng} />
+                        <Map lat={props.place.geometry.location.lat} lng={props.place.geometry.location.lng} />
                     </Grid>
                 </Paper>
             </div>
         </Layout>
     );
-});
+};
+
+Details.getInitialProps = async ({query}) => {
+    const placeId = query.itemId;
+    console.log(`placeid: ${placeId}`)
+    const apiParts = {
+        'input': 'input=',
+        'inputtype': '&inputtype=',
+        'placeid' : 'placeid=',
+        'apikey': '&key=',
+    };
+    
+    const detailsApiUrl = ''.concat(
+        publicRuntimeConfig.MAPS_DETAILS,
+        apiParts.placeid,
+        placeId,
+        apiParts.apikey,
+        publicRuntimeConfig.MAP_KEY
+    );
+
+    const res = await fetch(detailsApiUrl);
+    const data = await res.json();
+    return ({
+        place: data.result,
+    });
+}
 
 export default Details;

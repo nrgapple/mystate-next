@@ -29,11 +29,7 @@ function ListLinks(props) {
                             href={{
                                 pathname: "/l/[id]", 
                                 query: {
-                                    itemId: item.id, 
-                                    itemName: item.name, 
-                                    itemFormattedAddress: item.formatted_address,
-                                    itemLat: item.geometry.location.lat,
-                                    itemLng: item.geometry.location.lng,
+                                    itemId: item.id,
                                 }
                             }}
                         >

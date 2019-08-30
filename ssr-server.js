@@ -55,50 +55,20 @@ app
           return next(error);
         } else if (!error && response.statusCode == 200){
           const data = JSON.parse(body);
-          console.log(data);
           var placeId;
           try {
             placeId = data.candidates[0].place_id;
           } catch (e) {
             throw e;
           }
-          if (placeId) {
-            console.log(`Got place_id: ${placeId}`);
 
-            const detailsApiValues = {
-              'base': MAPS_DETAILS,
-              'placeid': placeId,
-            }
-
-            const detailsApiUrl = ''.concat(
-              detailsApiValues.base,
-              apiParts.placeid,
-              detailsApiValues.placeid,
-              apiParts.apikey,
-              apiValues.apikey
-            );
-
-            request(detailsApiUrl, (err, response, body) => {
-              if (err) {
-                return next(err);
-              } else if (!err && response.statusCode == 200) {
-                const data = JSON.parse(body);
-                console.log(data);
-                const actualPage = '/l/[id]';
-                const queryParams = {
-                  itemId: data.result.id, 
-                  itemName: data.result.name, 
-                  itemLat: data.result.geometry.location.lat,
-                  itemLng: data.result.geometry.location.lng,
-                };
-
-                app.render(req, res, actualPage, queryParams);
-              }
-            })
-          } else {
-            throw Error(`place_id: ${data.candidates[0].place_id}`);
+          const actualPage = '/l/[id]';
+          const queryParams = {
+            itemId : placeId,
           };
-        }
+
+          app.render(req, res, actualPage, queryParams);
+        }       
       });
     });
 
