@@ -6,8 +6,6 @@ import dynamic from 'next/dynamic'
 import Marker from 'react-map-gl'
 import { makeStyles, Grid, Paper, CircularProgress, Typography, Card, CardContent } from "@material-ui/core";
 
-const ALL_POSTS = "https://jsonplaceholder.typicode.com/posts/";
-
 const Map = dynamic(() => import('../../components/Map'), {
     loading: () => <CircularProgress />,
     ssr: false
@@ -21,6 +19,7 @@ const useStyles = makeStyles(theme => ({
         position: 'relative',
         padding: theme.spacing(2),
         color: theme.palette.text.secondary,
+        height: '20%'
     },
     card: {
         minWidth: 275,
@@ -79,7 +78,7 @@ const Details = withRouter( props => {
                         </Grid>
                     </Grid>
                 </Paper>
-                <Paper className={classes.mapPaper}>
+                <Paper className={classes.mapPaper} height={"100%"}>
                     <Grid container>
                         <Map lat={query.itemLat} lng={query.itemLng} />
                     </Grid>
@@ -88,15 +87,5 @@ const Details = withRouter( props => {
         </Layout>
     );
 });
-
-Details.getInitialProps = async function(context) {
-    const { id } = context.query;
-    const res = await fetch(ALL_POSTS);
-    const posts = await res.json();
-
-    console.log(`Fetched posts count: ${posts.length}`)
-
-    return { posts };
-}
 
 export default Details;

@@ -7,20 +7,17 @@ const Layout = props => {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Container>
-                {/* <Head>
-                    <title>{props.title} | {appTitle}</title>
-                    <meta 
-                        name="viewport" 
-                        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
-                    <meta charSet="utf-8" />
-                </Head> */}
-                <AppBar />
-                <main>
-                    {props.children}
-                </main>
-
-            </Container>
+            <Head>
+                <title>{props.title} | {appTitle}</title>
+                <meta 
+                    name="viewport" 
+                    content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
+                <meta charSet="utf-8" />
+            </Head>
+            <AppBar />
+            <main>
+                {props.children}
+            </main>
             <Scripts />
         </React.Fragment>
     );

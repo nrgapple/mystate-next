@@ -1,7 +1,7 @@
 import ReactMapGL from 'react-map-gl'
 import { SizeMe } from 'react-sizeme'
-
-const MAP_BOX_TOKEN = "pk.eyJ1IjoibnJnYXBwbGUiLCJhIjoiY2p6eDUxNGl1MHZsYzNucDBvOGZjZGduMyJ9.NjL4IkeudK0D6E30G1nzqg";
+import getConfig from 'next/config';
+const {publicRuntimeConfig} = getConfig();
 
 const Map = props => {
     const [viewport, setViewPort ] = React.useState({
@@ -9,7 +9,7 @@ const Map = props => {
         height: "100vh",
         latitude: Number(props.lat),
         longitude: Number(props.lng),
-        zoom: 2
+        zoom: 17
     });
 
     const _onViewportChange = viewport => {
@@ -23,7 +23,7 @@ const Map = props => {
             <>
                 <ReactMapGL
                     mapStyle="mapbox://styles/mapbox/light-v10"
-                    mapboxApiAccessToken={MAP_BOX_TOKEN}
+                    mapboxApiAccessToken={publicRuntimeConfig.MAP_BOX_TOKEN}
                     onViewportChange={_onViewportChange}
                     width={size.width}
                     height={size.height}
