@@ -25,14 +25,15 @@ function ListLinks(props) {
                 return (
                     <div>
                         <Link 
-                            as={`/l/${item.name.replace(' ', '-')}`} 
+                            as={`/l/${item.name.replace(/ /g, '-')}`} 
                             href={{
                                 pathname: "/l/[id]", 
                                 query: {
                                     itemId: item.id, 
                                     itemName: item.name, 
-                                    itemLat: item.address.geo.lat,
-                                    itemLng: item.address.geo.lng
+                                    itemFormattedAddress: item.formatted_address,
+                                    itemLat: item.geometry.location.lat,
+                                    itemLng: item.geometry.location.lng,
                                 }
                             }}
                         >

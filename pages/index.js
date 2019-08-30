@@ -1,6 +1,8 @@
 import ListView from "../components/ListView";
 import fetch from 'isomorphic-unfetch';
 import Layout from "../components/Layout";
+import getConfig from 'next/config';
+const {serverRuntimeConfig, publicRuntimeConfig} = getConfig();
 
 function index(props) {
     return (
@@ -12,12 +14,16 @@ function index(props) {
 
 index.getInitialProps = async function() {
     console.log("Starting getInitialProps in Locations");
-    const resLocations = await fetch('https://jsonplaceholder.typicode.com/users');
-    const dataLocations = await resLocations.json();
 
-    console.log(`Show data fetched. Count: ${dataLocations.length}`);
+    console.log(`Fetch= ${publicRuntimeConfig.PSU_FETCH}`);
+    const resMapBoxLocations = await fetch(publicRuntimeConfig.PSU_FETCH);
+    
+    const data = await resMapBoxLocations.json();
+    const results = data.results;
+    //console.log(results);
+    console.log(`Show data fetched. Count: ${results[1].formatted_address}`);
     return {
-        locations : dataLocations
+        locations : results
     };
 };
 
