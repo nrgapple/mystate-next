@@ -21,7 +21,7 @@ export default function ButtonAppBar() {
     const classes = useStyles();
 
     return (<div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="fixed">
             <Toolbar>
                 <Link href="/">
                     <Typography variant="h6" className={classes.title}>
